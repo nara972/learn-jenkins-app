@@ -60,6 +60,18 @@ pipeline {
             }
         }
 
+        stage('Prod E2E'){
+
+            environment{
+                CI_ENVIRONMENT_URL='https://cozy-halva-63801d.netlify.app'
+            }
+            steps {
+                sh '''
+                   npx playwright test --reporter=html
+                '''
+            }
+        }
+
     }
 
     post{
